@@ -9,6 +9,7 @@ import bCrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import Usuario from "./DAOs/usuarios.dao.class.js";
 import UsuariosSchema from './models/usuarios.model.js';
+import ProductSchema from './models/producto.model.js';
 
 //aqui importo el sistema de ruteo
 import mainRoutes from "./routes/mainRoutes.js";
@@ -90,6 +91,8 @@ app.use((req, res, next) => {
 app.use("/api", mainRoutes);
 
 //estrategias passport
+
+//USER REGISTRATION
 passport.use(
   "register",
   new localStrategy(
@@ -118,6 +121,25 @@ passport.use(
   )
 );
 
+// passport.use("addProduct",
+// new localStrategy(async (req, productName, done) => {
+//   try {
+//     ProductSchema.create(
+//       {
+//         title: productName,
+//         price: req.body.price,
+//         thumbnail: req.body.thumbnail
+//       }
+//     )
+//     return done(null, productName)
+//   } catch (e) {
+//     return done(e, null)
+//   }
+
+// })
+// )
+
+// USER LOGIN
 passport.use("login", 
 new localStrategy((username, password, done) => {
   try {

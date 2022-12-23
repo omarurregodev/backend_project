@@ -1,9 +1,11 @@
 import express from "express";
 import Usuario from "../DAOs/usuarios.dao.class.js";
+import Producto from "../DAOs/producto.dao.class.js";
 import passport from "passport";
 import { fork } from "child_process";
 import parseArgs from "minimist";
 import numCpus from "os";
+import ProductSchema from "../models/producto.model.js";
 
 
 const argv = parseArgs(process.argv.slice(2));
@@ -14,6 +16,8 @@ const argv = parseArgs(process.argv.slice(2));
 const router = express.Router();
 
 const usuario = new Usuario();
+
+const producto = new Producto();
 
 //AQUI INICIO LAS RUTAS
 
@@ -61,6 +65,31 @@ router.get('/login', (req, res) => {
   res.status(200).json({"message": "Usuario creado con exito!"})
 })
 
+
+// Add productos
+
+router.post("/addProduct", (req, res) => {
+  try {
+    if (req.body.productName && req.body.price && req.body.thumbnail) {
+      ProductSchema.create(
+        {
+          title: req.body.productName,
+          price: req.body.price,
+          thumbnail: req.body.thumbnail
+        }
+      )  
+    }
+    res.status(200).send("Producto creado")
+  } catch (error) {
+    res.status(402).send({"message":"Error creando producto"})
+  }
+});
+
+router.get("/getProd", async (req, res) => {
+  const prodsAll = await producto.listarAll();
+  console.log(prodsAll);
+  res.send(prodsAll);
+})
 
 router.get("/info", (req, res) => {
   res.status(200).json({
