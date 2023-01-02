@@ -21,6 +21,7 @@
     "express": "^4.17.3",
     "express-session": "^1.17.3",
     "minimist": "^1.2.7",
+    "mongodb": "^4.13.0",
     "mongoose": "^6.2.4",
     "nodemon": "^2.0.15",
     "passport": "^0.6.0",
