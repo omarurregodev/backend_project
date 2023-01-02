@@ -47,8 +47,8 @@ app.use(
     //MongoStorage
     store: MongoStore.create({
       mongoUrl: process.env.MongoDBURL_ATLAS,
-      mongoOptions: advancedOptions,
     }),
+    mongoOptions: advancedOptions,
     key: "currentSession",
     secret: process.env.SECRET_KEY_MONGO,
     cookie: {
