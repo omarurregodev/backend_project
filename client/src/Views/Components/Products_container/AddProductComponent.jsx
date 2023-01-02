@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 
-function AddProductContainer(props) {
+function AddProductComponent(props) {
 
     const [productName, setProductName] = useState("");
     const [price, setPrice] = useState();
@@ -83,4 +83,4 @@ function AddProductContainer(props) {
     );
 }
 
-export default AddProductContainer;
+export default AddProductComponent;

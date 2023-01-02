@@ -1,16 +1,16 @@
 import { MDBContainer } from 'mdb-react-ui-kit';
 import React from 'react';
-import AddProductContainer from './AddProductContainer';
-import ProdsContainer from './ProdsContainer';
+import AddProductComponent from './AddProductComponent';
+import ProductsComponent from './ProductsComponent';
 
 function ProductContainer() {
 
     return (
         <MDBContainer className='p-5 border rounded bg-secondary shadow-5'>
             <h1 className='fs-1 text-white'>Productos</h1>
-            <AddProductContainer></AddProductContainer>
+            <AddProductComponent></AddProductComponent>
             <br /><br /> <hr />
-            <ProdsContainer></ProdsContainer>
+            <ProductsComponent></ProductsComponent>
         </MDBContainer>
     );
 }

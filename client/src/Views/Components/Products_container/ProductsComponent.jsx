@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { MDBContainer, MDBTableBody, MDBTable, MDBTableHead } from "mdb-react-ui-kit";
 
-function ProdsContainer() {
+function ProductsComponent() {
   const [noProd, setNoProd] = useState();
   const [prods, setProds] = useState([]);
 
@@ -59,4 +59,4 @@ function ProdsContainer() {
   );
 }
 
-export default ProdsContainer;
+export default ProductsComponent;
