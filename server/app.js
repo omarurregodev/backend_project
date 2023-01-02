@@ -19,7 +19,7 @@ import mainRoutes from "./routes/mainRoutes.js";
 //passport imports
 import passport from "passport";
 import { Strategy } from "passport-local";
-import { options } from "yargs";
+
 
 // CONFIGURO MIS VARIABLES DE ENTORNO
 dotenv.config();
@@ -49,7 +49,6 @@ app.use(
       mongoUrl: process.env.MongoDBURL_ATLAS,
       mongoOptions: advancedOptions,
     }),
-    ...options,
     key: "currentSession",
     secret: process.env.SECRET_KEY_MONGO,
     cookie: {
