@@ -50,7 +50,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // INICIO LA BASE DE DATOS!!
 const connectDB = () => {
-  mongoose.connect(mongodb+srv:"//omarurregodev:oturrego0712@normalizrcluster.u64wunr.mongodb.net/?retryWrites=true&w=majority&ssl=true");
+  mongoose.connect("mongodb+srv://omarurregodev:oturrego0712@normalizrcluster.u64wunr.mongodb.net/?retryWrites=true&w=majority&ssl=true");
   console.log("connected DB", "//omarurregodev:oturrego0712@normalizrcluster.u64wunr.mongodb.net/?retryWrites=true&w=majority&ssl=true");
 };
 connectDB();
