@@ -20,6 +20,20 @@ import mainRoutes from "./routes/mainRoutes.js";
 import passport from "passport";
 import { Strategy } from "passport-local";
 
+// PINO LOGGS
+
+import pino from "pino";
+
+
+const loggerError = pino('error.log');
+const loggerWarn = pino('warning.log');
+const loggerInfo = pino('info.log');
+
+loggerError.level = 'error';
+loggerWarn.level = 'warn';
+loggerInfo.level = 'info';
+
+
 
 // CONFIGURO MIS VARIABLES DE ENTORNO
 dotenv.config();
@@ -47,8 +61,8 @@ app.use(
     //MongoStorage
     store: MongoStore.create({
       mongoUrl: process.env.MongoDBURL_ATLAS,
+      mongoOptions: advancedOptions,
     }),
-    mongoOptions: advancedOptions,
     key: "currentSession",
     secret: process.env.SECRET_KEY_MONGO,
     cookie: {
@@ -123,11 +137,14 @@ passport.use(
           },
           (err, userWithId) => {
             if (err) {
+              loggerError.error('Error al crear usuario nuevo.');
+              loggerInfo.error("Error al crear usuario nuevo.");
               return done(err, null);
             }
+            loggerInfo.info('Registro de usuario nuevo, exitoso.');
             return done(null, userWithId);
           }
-        );
+          );
       } catch (e) {
         return done(e, null);
       }
@@ -158,17 +175,20 @@ passport.use(
   "login",
   new localStrategy((username, password, done) => {
     try {
-      console.log(username);
-      UsuariosSchema.findOne({ username }, (err, user) => {
+      //console.log(username);
+      const twesting_name = UsuariosSchema.findOne({ username }, (err, user) => {
         if (err) {
           return done(err, null);
         }
         if (!user) {
+          loggerError.error('Error al iniciar sesión.');
+          loggerInfo.error("Error al iniciar sesión.");
           return done(null, false);
         }
         if (!isValidPassword(user, password)) {
           return done(null, false);
         }
+        loggerInfo.info('Inicio de sesión exitoso.');
         return done(null, user);
       });
     } catch (e) {
@@ -180,7 +200,7 @@ passport.use(
 // funciones para serializar y deserializar
 
 passport.serializeUser((usuario, done) => {
-  console.log(usuario);
+  console.log("es esto",usuario);
   done(null, usuario.username);
 });
 
@@ -204,3 +224,4 @@ const server = app.listen(PORT, () => {
   console.log(`Servidor http escuchando en el puerto ${server.address().port}`);
 });
 server.on("error", (error) => console.log(`Error en servidor ${error}`));
+

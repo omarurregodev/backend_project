@@ -1,0 +1,6 @@
+{"level":50,"time":1674523736670,"pid":13475,"hostname":"192.168.0.10","msg":"Error al iniciar sesión."}
+{"level":30,"time":1674523754929,"pid":13475,"hostname":"192.168.0.10","msg":"Inicio de sesión exitoso."}
+{"level":30,"time":1674523822443,"pid":13658,"hostname":"192.168.0.10","msg":"Registro de usuario nuevo, exitoso."}
+{"level":30,"time":1674523859505,"pid":13658,"hostname":"192.168.0.10","msg":"Registro de usuario nuevo, exitoso."}
+{"level":50,"time":1674523911280,"pid":13885,"hostname":"192.168.0.10","msg":"Error al crear usuario nuevo."}
+{"level":30,"time":1674523928355,"pid":13885,"hostname":"192.168.0.10","msg":"Registro de usuario nuevo, exitoso."}

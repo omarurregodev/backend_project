@@ -33,7 +33,7 @@ const Login = () => {
       }
     } catch (e) {
       alert("inicio de sesion erroneo")
-      console.error(e);
+      console.error("error",e);
     }
   };
   return (

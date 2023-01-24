@@ -6,6 +6,16 @@ import { fork } from "child_process";
 import parseArgs from "minimist";
 import numCpus from "os";
 import ProductSchema from "../models/producto.model.js";
+import pino from "pino";
+
+
+const loggerError = pino('error.log');
+const loggerWarn = pino('warning.log');
+const loggerInfo = pino('info.log');
+
+loggerError.level = 'error';
+loggerWarn.level = 'warn';
+loggerInfo.level = 'info';
 
 
 const argv = parseArgs(process.argv.slice(2));
@@ -106,6 +116,21 @@ router.get("/info", (req, res) => {
     }
   });
 });
+
+// PINO LOGGS
+
+router.get("/user", (req, res) => {
+  if (req.session.passport) {
+    loggerInfo.info('Exito');
+    res.send({
+      Name_session: req.session.passport,
+    });
+  } else {
+    loggerError.error('El usuario no existe.');
+    loggerInfo.error("error de datos.");
+    res.send("error de datos.");
+  }
+})
 
 router.get("/randoms", (req, res) => {
   const child = fork("./Utils/childCalc.js"); // < --- creamos proceso hijo
